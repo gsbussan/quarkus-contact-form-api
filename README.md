@@ -1,2 +1,2 @@
 # quarkus-contact-form-api
-Contact Form Emaile
+Contact Form Emailer
