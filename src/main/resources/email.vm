@@ -1,0 +1,10 @@
+Hallo Gurpreet Singh,
+
+${headers.name} moechte gerne mit Dir vernetzen, und hat am ${headers.timestamp} fuer Dich folgende Nachricht hinterlassen:
+${headers.message}
+
+Falls du mit ${headers.name} Kontakt aufnehemen willst, so lautet die Email Adresse : ${headers.email}.
+
+LG
+Contact Form Submission API
+
