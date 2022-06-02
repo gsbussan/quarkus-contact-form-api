@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jsonb'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jaxb'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-qute'
+    implementation 'io.quarkus:quarkus-qute'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-arc'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+
+    //Camel Dependencies
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-core', version: '2.9.0'
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-velocity', version: '2.9.0'
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-log', version: '2.9.0'
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-platform-http', version: '2.9.0'
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-direct', version: '2.9.0'
+    implementation group: 'org.apache.camel.quarkus', name: 'camel-quarkus-mail', version: '2.9.0'
+
+
+
+
+}
+
+group 'de.projekt.gsingh'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}

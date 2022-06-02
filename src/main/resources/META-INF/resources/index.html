@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .app__title{
+        text-align: center;
+        background: lightblue;
+        padding: 50px;
+        font-size: x-large;
+    }
+    .form{
+        background:lightblue;
+
+    }
+    .form__input{
+        position: relative;
+        z-index: 1;
+        background: rgba(38, 20, 35, 0.9);
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 100px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        border-radius: 15px;
+        font-size: x-large;
+        color: wheat;
+    }
+    .form input{
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background:whitesmoke ;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+    .form input::placeholder{
+        font-family: Georgia;
+    }
+    .button__input{
+        background: whitesmoke;
+        border-radius:12px ;
+    }
+    .button__input:hover{
+        background: wheat;
+        transform: scale(1.0);
+        cursor: pointer;
+    }
+    .app__navbar{
+        background: ghostwhite;
+        padding: 20px;
+        text-align:center ;
+    }
+    ul{
+        list-style: none;
+    }
+    a{
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 40px;
+        position: relative;
+    }
+    a:hover{
+        transform: scale(1.5%);
+        background: #f2f2f2;
+        border-radius: 20px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+</head>
+<body>
+<div class="app__title">
+    Contact Form API
+</div>
+<nav class="app__navbar">
+    <ul>
+        <li>
+            <a href="/">Home</a>
+            <a href="/">Back</a>
+        </li>
+    </ul>
+</nav >
+<div class="form">
+    <form class="form__input" name="myForm" action="http://localhost:8080/" method="POST">Send me a Message
+        <p></p>
+        <p></p>
+        <input type="text" id="name" name="name" placeholder="Your Name">
+        <input type="email" id="email" name="email" placeholder="your@email.com">
+        <textarea id="message" name="message" rows="8" style="width: 350px; height: 264px; background:whitesmoke;font-family: Georgia;border-radius: 10px" placeholder="Your  Message"></textarea>
+        <input id="request" class="button__input" type="submit" value="Send Message">
+    </form>
+    <div class="row">
+        <p class="col-md-12"><strong><span id="content">Efforts by Gurpreet Singh Bassan</span>&nbsp</strong></p>
+    </div>
+</div>
+</body>
+</html>
