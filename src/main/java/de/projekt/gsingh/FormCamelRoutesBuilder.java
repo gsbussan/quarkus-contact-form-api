@@ -32,6 +32,7 @@ public class FormCamelRoutesBuilder extends RouteBuilder {
                 .setHeader("name",simple("${header.name}"))
                 .setHeader("email",simple("${header.email}"))
                 .setHeader("message",simple("${header.message}"))
+
                 .to("velocity:email.vm")
 
                 .removeHeaders("*", "email", "timestamp")
@@ -49,13 +50,6 @@ public class FormCamelRoutesBuilder extends RouteBuilder {
                 .setHeader("Location", simple("{{redirect.success}}"))
                 .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(303)) // Redirect 303 See Other after form submission
                 .transform(constant(""));
-
-            /*
-            TOdo
-            1.Datenbank Anbindung
-
-             */
-
 
     }
 }
