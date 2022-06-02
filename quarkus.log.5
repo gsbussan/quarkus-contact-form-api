@@ -1,6 +1,6 @@
-2022-06-02 12:05:04,759 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (Quarkus Main Thread) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
-2022-06-02 12:05:04,760 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.mai.MainSupport] (Quarkus Main Thread) Apache Camel (Main) 3.16.0 is starting
-2022-06-02 12:05:04,774 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] ERROR [org.apa.cam.qua.mai.CamelMainRuntime] (Quarkus Main Thread) Failed to start application: org.apache.camel.FailedToCreateRouteException: Failed to create route processing-form-data at: >>> SetHeader[Location, simple{{{redirect.success}}}] <<< in route: Route(processing-form-data)[From[direct:processing-template]... because of Property with key [redirect.success] not found in properties from text: {{redirect.success}}
+2022-06-02 13:25:50,959 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[11960] INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (Quarkus Main Thread) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
+2022-06-02 13:25:50,971 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[11960] INFO  [org.apa.cam.mai.MainSupport] (Quarkus Main Thread) Apache Camel (Main) 3.16.0 is starting
+2022-06-02 13:25:51,088 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[11960] ERROR [org.apa.cam.qua.mai.CamelMainRuntime] (Quarkus Main Thread) Failed to start application: org.apache.camel.FailedToCreateRouteException: Failed to create route processing-form-data at: >>> WireTap[seda:insert-to-db] <<< in route: Route(processing-form-data)[From[direct:processing-template]... because of No endpoint could be found for: seda://insert-to-db, please check your classpath contains the needed Camel component jar.
 	at org.apache.camel.reifier.RouteReifier.doCreateRoute(RouteReifier.java:240)
 	at org.apache.camel.reifier.RouteReifier.createRoute(RouteReifier.java:74)
 	at org.apache.camel.impl.DefaultModelReifierFactory.createRoute(DefaultModelReifierFactory.java:49)
@@ -33,41 +33,21 @@
 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at io.quarkus.runner.bootstrap.StartupActionImpl$1.run(StartupActionImpl.java:103)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: java.lang.IllegalArgumentException: Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.getPropertyValue(DefaultPropertiesParser.java:284)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.readProperty(DefaultPropertiesParser.java:175)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.doParse(DefaultPropertiesParser.java:117)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.parse(DefaultPropertiesParser.java:101)
-	at org.apache.camel.component.properties.DefaultPropertiesParser.parseUri(DefaultPropertiesParser.java:66)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:273)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:164)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1872)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1865)
-	at org.apache.camel.support.CamelContextHelper.parseText(CamelContextHelper.java:447)
-	at org.apache.camel.reifier.AbstractReifier.parseString(AbstractReifier.java:54)
-	at org.apache.camel.reifier.language.ExpressionReifier.createExpression(ExpressionReifier.java:183)
-	at org.apache.camel.reifier.AbstractReifier.createExpression(AbstractReifier.java:115)
-	at org.apache.camel.reifier.SetHeaderReifier.createProcessor(SetHeaderReifier.java:37)
+Caused by: org.apache.camel.NoSuchEndpointException: No endpoint could be found for: seda://insert-to-db, please check your classpath contains the needed Camel component jar.
+	at org.apache.camel.impl.engine.AbstractCamelContext.doGetEndpoint(AbstractCamelContext.java:988)
+	at org.apache.camel.impl.engine.AbstractCamelContext.getEndpoint(AbstractCamelContext.java:864)
+	at org.apache.camel.support.CamelContextHelper.resolveEndpoint(CamelContextHelper.java:123)
+	at org.apache.camel.reifier.WireTapReifier.createProcessor(WireTapReifier.java:79)
 	at org.apache.camel.reifier.ProcessorReifier.makeProcessor(ProcessorReifier.java:844)
 	at org.apache.camel.reifier.ProcessorReifier.addRoutes(ProcessorReifier.java:585)
 	at org.apache.camel.reifier.RouteReifier.doCreateRoute(RouteReifier.java:236)
 	... 31 more
 
-2022-06-02 12:05:04,786 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] ERROR [io.qua.run.Application] (Quarkus Main Thread) Failed to start application (with profile dev): java.lang.IllegalArgumentException: Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.getPropertyValue(DefaultPropertiesParser.java:284)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.readProperty(DefaultPropertiesParser.java:175)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.doParse(DefaultPropertiesParser.java:117)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.parse(DefaultPropertiesParser.java:101)
-	at org.apache.camel.component.properties.DefaultPropertiesParser.parseUri(DefaultPropertiesParser.java:66)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:273)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:164)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1872)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1865)
-	at org.apache.camel.support.CamelContextHelper.parseText(CamelContextHelper.java:447)
-	at org.apache.camel.reifier.AbstractReifier.parseString(AbstractReifier.java:54)
-	at org.apache.camel.reifier.language.ExpressionReifier.createExpression(ExpressionReifier.java:183)
-	at org.apache.camel.reifier.AbstractReifier.createExpression(AbstractReifier.java:115)
-	at org.apache.camel.reifier.SetHeaderReifier.createProcessor(SetHeaderReifier.java:37)
+2022-06-02 13:25:51,106 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[11960] ERROR [io.qua.run.Application] (Quarkus Main Thread) Failed to start application (with profile dev): org.apache.camel.NoSuchEndpointException: No endpoint could be found for: seda://insert-to-db, please check your classpath contains the needed Camel component jar.
+	at org.apache.camel.impl.engine.AbstractCamelContext.doGetEndpoint(AbstractCamelContext.java:988)
+	at org.apache.camel.impl.engine.AbstractCamelContext.getEndpoint(AbstractCamelContext.java:864)
+	at org.apache.camel.support.CamelContextHelper.resolveEndpoint(CamelContextHelper.java:123)
+	at org.apache.camel.reifier.WireTapReifier.createProcessor(WireTapReifier.java:79)
 	at org.apache.camel.reifier.ProcessorReifier.makeProcessor(ProcessorReifier.java:844)
 	at org.apache.camel.reifier.ProcessorReifier.addRoutes(ProcessorReifier.java:585)
 	at org.apache.camel.reifier.RouteReifier.doCreateRoute(RouteReifier.java:236)
@@ -103,120 +83,4 @@ Caused by: java.lang.IllegalArgumentException: Property with key [redirect.succe
 	at io.quarkus.runner.bootstrap.StartupActionImpl$1.run(StartupActionImpl.java:103)
 	at java.base/java.lang.Thread.run(Thread.java:829)
 
-2022-06-02 12:05:04,788 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] ERROR [io.qua.dep.dev.IsolatedDevModeMain] (vert.x-worker-thread-0) Failed to start quarkus: io.quarkus.dev.appstate.ApplicationStartException: java.lang.RuntimeException: Failed to start quarkus
-	at io.quarkus.dev.appstate.ApplicationStateNotification.waitForApplicationStart(ApplicationStateNotification.java:58)
-	at io.quarkus.runner.bootstrap.StartupActionImpl.runMainClass(StartupActionImpl.java:122)
-	at io.quarkus.deployment.dev.IsolatedDevModeMain.restartApp(IsolatedDevModeMain.java:253)
-	at io.quarkus.deployment.dev.IsolatedDevModeMain.restartCallback(IsolatedDevModeMain.java:234)
-	at io.quarkus.deployment.dev.RuntimeUpdatesProcessor.doScan(RuntimeUpdatesProcessor.java:536)
-	at io.quarkus.deployment.dev.RuntimeUpdatesProcessor.doScan(RuntimeUpdatesProcessor.java:436)
-	at io.quarkus.vertx.http.runtime.devmode.VertxHttpHotReplacementSetup$4.handle(VertxHttpHotReplacementSetup.java:152)
-	at io.quarkus.vertx.http.runtime.devmode.VertxHttpHotReplacementSetup$4.handle(VertxHttpHotReplacementSetup.java:139)
-	at io.vertx.core.impl.ContextImpl.lambda$null$0(ContextImpl.java:159)
-	at io.vertx.core.impl.AbstractContext.dispatch(AbstractContext.java:100)
-	at io.vertx.core.impl.ContextImpl.lambda$executeBlocking$1(ContextImpl.java:157)
-	at org.jboss.threads.ContextHandler$1.runWith(ContextHandler.java:18)
-	at org.jboss.threads.EnhancedQueueExecutor$Task.run(EnhancedQueueExecutor.java:2449)
-	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1478)
-	at org.jboss.threads.DelegatingRunnable.run(DelegatingRunnable.java:29)
-	at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:29)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: java.lang.RuntimeException: Failed to start quarkus
-	at io.quarkus.runner.ApplicationImpl.doStart(Unknown Source)
-	at io.quarkus.runtime.Application.start(Application.java:101)
-	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:103)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:67)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:41)
-	at io.quarkus.runtime.Quarkus.run(Quarkus.java:120)
-	at io.quarkus.runner.GeneratedMain.main(Unknown Source)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at io.quarkus.runner.bootstrap.StartupActionImpl$1.run(StartupActionImpl.java:103)
-	... 1 more
-Caused by: java.lang.RuntimeException: java.lang.RuntimeException: org.apache.camel.FailedToCreateRouteException: Failed to create route processing-form-data at: >>> SetHeader[Location, simple{{{redirect.success}}}] <<< in route: Route(processing-form-data)[From[direct:processing-template]... because of Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.quarkus.core.CamelBootstrapRecorder.start(CamelBootstrapRecorder.java:47)
-	at io.quarkus.deployment.steps.CamelBootstrapProcessor$boot173480958.deploy_0(Unknown Source)
-	at io.quarkus.deployment.steps.CamelBootstrapProcessor$boot173480958.deploy(Unknown Source)
-	... 13 more
-Caused by: java.lang.RuntimeException: org.apache.camel.FailedToCreateRouteException: Failed to create route processing-form-data at: >>> SetHeader[Location, simple{{{redirect.success}}}] <<< in route: Route(processing-form-data)[From[direct:processing-template]... because of Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.quarkus.main.CamelMainRuntime.start(CamelMainRuntime.java:65)
-	at org.apache.camel.quarkus.core.CamelBootstrapRecorder.start(CamelBootstrapRecorder.java:45)
-	... 15 more
-Caused by: org.apache.camel.FailedToCreateRouteException: Failed to create route processing-form-data at: >>> SetHeader[Location, simple{{{redirect.success}}}] <<< in route: Route(processing-form-data)[From[direct:processing-template]... because of Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.reifier.RouteReifier.doCreateRoute(RouteReifier.java:240)
-	at org.apache.camel.reifier.RouteReifier.createRoute(RouteReifier.java:74)
-	at org.apache.camel.impl.DefaultModelReifierFactory.createRoute(DefaultModelReifierFactory.java:49)
-	at org.apache.camel.impl.DefaultCamelContext.startRouteDefinitions(DefaultCamelContext.java:887)
-	at org.apache.camel.impl.DefaultCamelContext.startRouteDefinitions(DefaultCamelContext.java:775)
-	at org.apache.camel.impl.engine.AbstractCamelContext.doInit(AbstractCamelContext.java:2937)
-	at org.apache.camel.quarkus.core.FastCamelContext.doInit(FastCamelContext.java:172)
-	at org.apache.camel.support.service.BaseService.init(BaseService.java:83)
-	at org.apache.camel.impl.engine.AbstractCamelContext.init(AbstractCamelContext.java:2620)
-	at org.apache.camel.support.service.BaseService.start(BaseService.java:111)
-	at org.apache.camel.impl.engine.AbstractCamelContext.start(AbstractCamelContext.java:2639)
-	at org.apache.camel.impl.DefaultCamelContext.start(DefaultCamelContext.java:255)
-	at org.apache.camel.quarkus.main.CamelMain.doStart(CamelMain.java:94)
-	at org.apache.camel.support.service.BaseService.start(BaseService.java:119)
-	at org.apache.camel.quarkus.main.CamelMain.startEngine(CamelMain.java:140)
-	at org.apache.camel.quarkus.main.CamelMainRuntime.start(CamelMainRuntime.java:49)
-	... 16 more
-Caused by: java.lang.IllegalArgumentException: Property with key [redirect.success] not found in properties from text: {{redirect.success}}
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.getPropertyValue(DefaultPropertiesParser.java:284)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.readProperty(DefaultPropertiesParser.java:175)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.doParse(DefaultPropertiesParser.java:117)
-	at org.apache.camel.component.properties.DefaultPropertiesParser$ParsingContext.parse(DefaultPropertiesParser.java:101)
-	at org.apache.camel.component.properties.DefaultPropertiesParser.parseUri(DefaultPropertiesParser.java:66)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:273)
-	at org.apache.camel.component.properties.PropertiesComponent.parseUri(PropertiesComponent.java:164)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1872)
-	at org.apache.camel.impl.engine.AbstractCamelContext.resolvePropertyPlaceholders(AbstractCamelContext.java:1865)
-	at org.apache.camel.support.CamelContextHelper.parseText(CamelContextHelper.java:447)
-	at org.apache.camel.reifier.AbstractReifier.parseString(AbstractReifier.java:54)
-	at org.apache.camel.reifier.language.ExpressionReifier.createExpression(ExpressionReifier.java:183)
-	at org.apache.camel.reifier.AbstractReifier.createExpression(AbstractReifier.java:115)
-	at org.apache.camel.reifier.SetHeaderReifier.createProcessor(SetHeaderReifier.java:37)
-	at org.apache.camel.reifier.ProcessorReifier.makeProcessor(ProcessorReifier.java:844)
-	at org.apache.camel.reifier.ProcessorReifier.addRoutes(ProcessorReifier.java:585)
-	at org.apache.camel.reifier.RouteReifier.doCreateRoute(RouteReifier.java:236)
-	... 31 more
-
-2022-06-02 12:05:24,966 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (Quarkus Main Thread) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
-2022-06-02 12:05:24,967 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.mai.MainSupport] (Quarkus Main Thread) Apache Camel (Main) 3.16.0 is starting
-2022-06-02 12:05:24,980 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-9) is starting
-2022-06-02 12:05:24,983 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Routes startup (total:2 started:2)
-2022-06-02 12:05:24,984 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Started receiving-http-route (platform-http:///)
-2022-06-02 12:05:24,985 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Started processing-form-data (direct://processing-template)
-2022-06-02 12:05:24,985 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-9) started in 8ms (build:0ms init:4ms start:4ms)
-2022-06-02 12:05:24,994 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) quarkus-contact-form-api 1.0-SNAPSHOT on JVM (powered by Quarkus 2.9.2.Final) started in 0.284s. Listening on: http://localhost:8080
-2022-06-02 12:05:24,995 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-2022-06-02 12:05:24,995 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [camel-attachments, camel-core, camel-direct, camel-log, camel-mail, camel-platform-http, camel-velocity, cdi, qute, resteasy-reactive, resteasy-reactive-jackson, resteasy-reactive-jaxb, resteasy-reactive-jsonb, resteasy-reactive-qute, smallrye-context-propagation, vertx]
-2022-06-02 12:05:24,996 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (Timer-0) Live reload total time: 0.294s 
-2022-06-02 12:05:46,777 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (Timer-0) Restarting quarkus due to changes in base.html.
-2022-06-02 12:05:46,778 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-9) shutting down
-2022-06-02 12:05:46,779 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Routes stopped (total:2 stopped:2)
-2022-06-02 12:05:46,780 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Stopped receiving-http-route (platform-http:///)
-2022-06-02 12:05:46,780 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Stopped processing-form-data (direct://processing-template)
-2022-06-02 12:05:46,781 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-9) shutdown in 3ms (uptime:21s800ms)
-2022-06-02 12:05:46,785 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) quarkus-contact-form-api stopped in 0.007s
-2022-06-02 12:05:47,033 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.qua.cor.CamelBootstrapRecorder] (Quarkus Main Thread) Bootstrap runtime: org.apache.camel.quarkus.main.CamelMainRuntime
-2022-06-02 12:05:47,034 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.mai.MainSupport] (Quarkus Main Thread) Apache Camel (Main) 3.16.0 is starting
-2022-06-02 12:05:47,056 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-10) is starting
-2022-06-02 12:05:47,059 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Routes startup (total:2 started:2)
-2022-06-02 12:05:47,060 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Started receiving-http-route (platform-http:///)
-2022-06-02 12:05:47,060 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Started processing-form-data (direct://processing-template)
-2022-06-02 12:05:47,061 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-10) started in 9ms (build:0ms init:4ms start:5ms)
-2022-06-02 12:05:47,062 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) quarkus-contact-form-api 1.0-SNAPSHOT on JVM (powered by Quarkus 2.9.2.Final) started in 0.273s. Listening on: http://localhost:8080
-2022-06-02 12:05:47,063 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-2022-06-02 12:05:47,064 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [camel-attachments, camel-core, camel-direct, camel-log, camel-mail, camel-platform-http, camel-velocity, cdi, qute, resteasy-reactive, resteasy-reactive-jackson, resteasy-reactive-jaxb, resteasy-reactive-jsonb, resteasy-reactive-qute, smallrye-context-propagation, vertx]
-2022-06-02 12:05:47,065 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (Timer-0) Live reload total time: 0.295s 
-2022-06-02 12:06:04,843 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (Timer-0) File change detected: C:\Users\gsingh\quarkus-contact-form-api\src\main\resources\application.properties
-2022-06-02 12:06:04,845 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.qua.dep.dev.RuntimeUpdatesProcessor] (Timer-0) Restarting quarkus due to changes in application.properties.
-2022-06-02 12:06:04,846 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-10) shutting down
-2022-06-02 12:06:04,848 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Routes stopped (total:2 stopped:2)
-2022-06-02 12:06:04,848 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Stopped receiving-http-route (platform-http:///)
-2022-06-02 12:06:04,849 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread)     Stopped processing-form-data (direct://processing-template)
-2022-06-02 12:06:04,850 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [org.apa.cam.imp.eng.AbstractCamelContext] (Quarkus Main Thread) Apache Camel 3.16.0 (camel-10) shutdown in 4ms (uptime:17s794ms)
-2022-06-02 12:06:04,855 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[19832] INFO  [io.quarkus] (Quarkus Main Thread) quarkus-contact-form-api stopped in 0.009s
+2022-06-02 13:25:51,108 de-adn-59g18g3 quarkus-contact-form-api-dev.jar[11960] INFO  [io.qua.dep.dev.IsolatedDevModeMain] (main) Attempting to start live reload endpoint to recover from previous Quarkus startup failure
